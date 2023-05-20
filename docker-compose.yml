@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  docker-test-vite:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:5173"
+    volumes:
+      # - ./:/docker-test-vite
+      - ./src:/docker-test-vite/src
+      - ./public:/docker-test-vite/public
+      - ./types:/docker-test-vite/types
+      - ./vite.config.ts:/docker-test-vite/vite.config.ts
+      - ./tsconfig.json:/docker-test-vite/tsconfig.json
+      - ./tsconfig.app.json:/docker-test-vite/tsconfig.app.json
+      - ./tsconfig.node.json:/docker-test-vite/tsconfig.node.json
+      - ./tsconfig.vitest:/docker-test-vite/tsconfig.vitest
+      - ./vitest.config.ts:/docker-test-vite/vitest.config.ts
+      - ./index.html:/docker-test-vite/index.html
+    command: yarn dev
+    # environment:
+    #   - PORT=5173
+    #   - HOST=0.0.0.0
